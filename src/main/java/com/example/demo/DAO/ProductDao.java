@@ -19,6 +19,13 @@ public class ProductDao {
 	            .executeBlocking()
 	            .getBody();
 	}
+	
+	public ProductPagedQueryResponse getProductVarientsBySku(String sku) {
+	    return apiConfig.createApiClient().products().get()
+	            .withWhere("masterData(current(variants(sku=\"" + sku + "\")))")
+	            .executeBlocking()
+	            .getBody();
+	}
 
 	public Category getCategoryById(String id) {
 		return apiConfig.createApiClient().categories().withId(id).get().executeBlocking().getBody();

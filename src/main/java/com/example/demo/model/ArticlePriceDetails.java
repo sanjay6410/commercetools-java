@@ -1,8 +1,11 @@
 package com.example.demo.model;
 
+import jakarta.xml.bind.annotation.XmlElement;
+
 public class ArticlePriceDetails {
 
-	private ArticlePriceinfo articlePriceinfo;
+	@XmlElement(name = "article_priceinfo")
+	private ArticlePriceinfo customarticlePriceinfo;
 
 	public ArticlePriceDetails() {
 		super();
@@ -11,22 +14,16 @@ public class ArticlePriceDetails {
 
 	public ArticlePriceDetails(ArticlePriceinfo articlePriceinfo) {
 		super();
-		this.articlePriceinfo = articlePriceinfo;
+		this.customarticlePriceinfo = articlePriceinfo;
 	}
 
-	@Override
-	public String toString() {
-		return "ArticlePriceDetails [articlePriceinfo=" + articlePriceinfo + ", getArticlePriceinfo()="
-				+ getArticlePriceinfo() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
-	}
 
 	public ArticlePriceinfo getArticlePriceinfo() {
-		return articlePriceinfo;
+		return customarticlePriceinfo;
 	}
 
 	public void setArticlePriceinfo(ArticlePriceinfo articlePriceinfo) {
-		this.articlePriceinfo = articlePriceinfo;
+		this.customarticlePriceinfo = articlePriceinfo;
 	}
 	
 	

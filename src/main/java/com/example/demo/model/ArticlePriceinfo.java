@@ -1,35 +1,23 @@
 package com.example.demo.model;
 
+import java.util.List;
+
+import jakarta.xml.bind.annotation.XmlElement;
+
 public class ArticlePriceinfo {
 
-	 private String sku;
-	 private PricingSection pricingSection;
-	public ArticlePriceinfo() {
-		super();
-		// TODO Auto-generated constructor stub
+	@XmlElement(name = "item")
+	 private List<Item> custompriceInfoitems;
+
+	public List<Item> getPriceInfoitems() {
+		return custompriceInfoitems;
 	}
-	public ArticlePriceinfo(String sku, PricingSection pricingSection) {
-		super();
-		this.sku = sku;
-		this.pricingSection = pricingSection;
+
+	public void setPriceInfoitems(List<Item> priceInfoitems) {
+		this.custompriceInfoitems = priceInfoitems;
 	}
-	@Override
-	public String toString() {
-		return "ArticlePriceinfo [sku=" + sku + ", pricingSection=" + pricingSection + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
-	public String getSku() {
-		return sku;
-	}
-	public void setSku(String sku) {
-		this.sku = sku;
-	}
-	public PricingSection getPricingSection() {
-		return pricingSection;
-	}
-	public void setPricingSection(PricingSection pricingSection) {
-		this.pricingSection = pricingSection;
-	}
+	
+	
 	 
 	 
 }

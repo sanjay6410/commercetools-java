@@ -1,16 +1,19 @@
 package com.example.demo.model;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlElement; 
+import jakarta.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
+@XmlRootElement(name = "sapbridgeArticlePrice")
 public class SapbridgeArticlePrice {
 
-	//@XmlElement(name = "sessionId")
-	private String sessionID;
-    private String idocNumber;
-    private String messageType;
-    private ArticlePriceDetails articlePriceDetails;
+	@XmlElement(name = "sessionId")
+	private String sessionId;
+	@XmlElement(name = "IDOCNumber")
+    private String IDOCNumber;
+	@XmlElement(name = "MessageType")
+    private String MessageType;
+	@XmlElement(name="articlePriceDetails")
+    private ArticlePriceDetails customarticlePriceDetails;
     private String xmlnsNs0;
     private String prefix;
 	public SapbridgeArticlePrice() {
@@ -20,36 +23,36 @@ public class SapbridgeArticlePrice {
 	public SapbridgeArticlePrice(String sessionID, String idocNumber, String messageType,
 			ArticlePriceDetails articlePriceDetails, String xmlnsNs0, String prefix) {
 		super();
-		this.sessionID = sessionID;
-		this.idocNumber = idocNumber;
-		this.messageType = messageType;
-		this.articlePriceDetails = articlePriceDetails;
+		this.sessionId = sessionID;
+		this.IDOCNumber = idocNumber;
+		this.MessageType = messageType;
+		this.customarticlePriceDetails = articlePriceDetails;
 		this.xmlnsNs0 = xmlnsNs0;
 		this.prefix = prefix;
 	}
 	public String getSessionID() {
-		return sessionID;
+		return sessionId;
 	}
 	public void setSessionID(String sessionID) {
-		this.sessionID = sessionID;
+		this.sessionId = sessionID;
 	}
 	public String getIdocNumber() {
-		return idocNumber;
+		return IDOCNumber;
 	}
 	public void setIdocNumber(String idocNumber) {
-		this.idocNumber = idocNumber;
+		this.IDOCNumber = idocNumber;
 	}
 	public String getMessageType() {
-		return messageType;
+		return MessageType;
 	}
 	public void setMessageType(String messageType) {
-		this.messageType = messageType;
+		this.MessageType = messageType;
 	}
 	public ArticlePriceDetails getArticlePriceDetails() {
-		return articlePriceDetails;
+		return customarticlePriceDetails;
 	}
 	public void setArticlePriceDetails(ArticlePriceDetails articlePriceDetails) {
-		this.articlePriceDetails = articlePriceDetails;
+		this.customarticlePriceDetails = articlePriceDetails;
 	}
 	public String getXmlnsNs0() {
 		return xmlnsNs0;
@@ -63,12 +66,7 @@ public class SapbridgeArticlePrice {
 	public void setPrefix(String prefix) {
 		this.prefix = prefix;
 	}
-	@Override
-	public String toString() {
-		return "SapbridgeArticlePrice [sessionID=" + sessionID + ", idocNumber=" + idocNumber + ", messageType="
-				+ messageType + ", articlePriceDetails=" + articlePriceDetails + ", xmlnsNs0=" + xmlnsNs0 + ", prefix="
-				+ prefix + "]";
-	}
+	
     
     
 }

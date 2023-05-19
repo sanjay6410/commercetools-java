@@ -1,33 +1,37 @@
 package com.example.demo.model;
 
+import jakarta.xml.bind.annotation.XmlElement;
+
 public class PricingSectionItem {
 
-	    private String priceType;
+	   @XmlElement(name = "price_type")
+	    private String custompriceType;
 	    private String country;
 	    private String channel;
-	    private String finalPrice;
+	    @XmlElement(name = "final_price")
+	    private String customfinalPrice;
 		public PricingSectionItem() {
 			super();
 			// TODO Auto-generated constructor stub
 		}
 		public PricingSectionItem(String priceType, String country, String channel, String finalPrice) {
 			super();
-			this.priceType = priceType;
+			this.custompriceType = priceType;
 			this.country = country;
 			this.channel = channel;
-			this.finalPrice = finalPrice;
+			this.customfinalPrice = finalPrice;
 		}
+		
 		@Override
 		public String toString() {
-			return "PricingSectionItem [priceType=" + priceType + ", country=" + country + ", channel=" + channel
-					+ ", finalPrice=" + finalPrice + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-					+ ", toString()=" + super.toString() + "]";
+			return "PricingSectionItem [custompriceType=" + custompriceType + ", country=" + country + ", channel="
+					+ channel + ", customfinalPrice=" + customfinalPrice + "]";
 		}
 		public String getPriceType() {
-			return priceType;
+			return custompriceType;
 		}
 		public void setPriceType(String priceType) {
-			this.priceType = priceType;
+			this.custompriceType = priceType;
 		}
 		public String getCountry() {
 			return country;
@@ -42,10 +46,10 @@ public class PricingSectionItem {
 			this.channel = channel;
 		}
 		public String getFinalPrice() {
-			return finalPrice;
+			return customfinalPrice;
 		}
 		public void setFinalPrice(String finalPrice) {
-			this.finalPrice = finalPrice;
+			this.customfinalPrice = finalPrice;
 		}
 	    
 	    
