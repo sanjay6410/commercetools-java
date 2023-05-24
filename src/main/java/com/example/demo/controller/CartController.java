@@ -34,7 +34,7 @@ public class CartController {
 		}
 	}
 
-	@GetMapping("getCartByCustomerFirstName")
+	@GetMapping("/getCartByCustomerFirstName")
 	public ResponseEntity<?> getCartByCustomerFirstName(@RequestParam("firstName") String firstName) {
 		try {
 		Cart customerCart = service.getCartByCustomerFirstName(firstName);
