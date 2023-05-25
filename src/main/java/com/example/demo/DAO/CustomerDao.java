@@ -20,7 +20,11 @@ public class CustomerDao {
 	}
 	
 	public CustomerPagedQueryResponse getCustomerByEmail(String email) {
-		return apiConfig.createApiClient().customers().get().withWhere("email= :emailVar").withPredicateVar("emailVar", email)
+		return apiConfig.createApiClient().customers().get()
+				//.withWhere("email= :emailVar").withPredicateVar("emailVar", email)
+				.withWhere("email=\""+email+"\"")
 				.executeBlocking().getBody();
 	}
 }
+//.withWhere("masterData(current(variants(sku=\"" + sku + "\")))")
+//.withWhere("email=\""+email+"\"")
