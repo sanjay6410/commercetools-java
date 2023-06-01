@@ -75,8 +75,7 @@ public class XmlParsingPriceService {
 	    } else {
 	        currency_Code = "EUR";
 	    }
-//	    
-	    // Check if results list is empty before accessing elements
+
 	    List<Product> results = productDao.getProductVarientsBySku(sku).getResults();
 	    if (results.isEmpty()) {
 	        throw new RuntimeException("Product not found for SKU: " + sku);
@@ -85,13 +84,7 @@ public class XmlParsingPriceService {
 	    
 	    
 	    Product product = results.get(0);
-//	    System.out.println(product.getVersion());
-//	    System.out.println(product.getMasterData().getCurrent().getMasterVariant().getPrices().get(0).getId());
-//	    if(currency_Code.equals("EUR")) {
-//	    	priceId=product.getMasterData().getCurrent().getVariants().get(0).getPrices().get(0).getId();
-//	    }else if(currency_Code.equals("USD")) {
-//	    	priceId=product.getMasterData().getCurrent().getVariants().get(0).getPrices().get(3).getId();
-//	    }
+
 	    
 	    ChannelResourceIdentifier channelResourceIdentifier = ChannelResourceIdentifierBuilder.of()
 	    		
@@ -117,7 +110,6 @@ public class XmlParsingPriceService {
 	            .version(product.getVersion())
 	            .plusActions(ProductUpdateActionBuilder.of().addPriceBuilder()
 	            		.price(priceDraft)
-//	            		.variantId(product.)
 	            		.sku(sku)
 	            		.build())
 	            

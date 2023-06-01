@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.commercetools.api.models.common.TypedMoney;
+import com.commercetools.api.models.payment.Payment;
 import com.example.demo.service.PaymentService;
 
 @RestController
@@ -18,8 +19,8 @@ public class PaymentController {
 	@PostMapping("/createPayment")
 	public ResponseEntity<?> createPayment(@RequestBody TypedMoney money){
 		try {
-			paymentService.createPayment(money);
-			return ResponseEntity.ok("Payment Method Created");
+			Payment payment=  paymentService.createPayment(money);
+			return ResponseEntity.ok(payment);
 		}catch (Exception e) {
 			return ResponseEntity.internalServerError().body("Payment Method is Not Created"+e);
 		}

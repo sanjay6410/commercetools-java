@@ -31,7 +31,7 @@ import com.example.demo.DAO.CustomObjectDao;
 import com.example.demo.config.ProjectApiConfig;
 
 @Service
-public class cartService {
+public class CartService {
 
 	@Autowired
 	private ProjectApiConfig apiConfig;
@@ -114,7 +114,7 @@ public class cartService {
 		Cart cart=cartDao.getCartById(cartId);
 		
 		PaymentResourceIdentifier paymentIdentifier=PaymentResourceIdentifierBuilder.of()
-				.id("5915260d-3a07-4603-9ef5-7e21a83bfa7b")
+				.id("82b13c39-df6e-4c36-9b88-5328c767cd02")
 				.build();
 		CartUpdate cartUpdate=CartUpdateBuilder.of()
 				.version(cart.getVersion())

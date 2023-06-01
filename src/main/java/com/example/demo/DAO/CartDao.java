@@ -28,4 +28,8 @@ public class CartDao {
 				.get().executeBlocking().getBody();
 		return cartWithId;
 	}
+	
+	public Cart getCartByCustomerById(String custId) {
+		return apiConfig.createApiClient().carts().withCustomerId(custId).get().executeBlocking().getBody();
+	}
 }

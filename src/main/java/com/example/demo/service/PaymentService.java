@@ -23,7 +23,7 @@ public class PaymentService {
 	private ProjectApiConfig apiConfig;
 	
 	//Money money
-	public void createPayment(TypedMoney money) {
+	public Payment createPayment(TypedMoney money) {
 		PaymentDraft paymentDraft=PaymentDraftBuilder.of()
 				//.key("cashMethod")
 				.amountPlanned(MoneyBuilder.of().centAmount(money.getCentAmount()).currencyCode(money.getCurrencyCode()).build())
@@ -35,5 +35,6 @@ public class PaymentService {
 				.build();
 		
 		Payment payment=apiConfig.createApiClient().payments().post(paymentDraft).executeBlocking().getBody();
+		return payment;
 	}
 }

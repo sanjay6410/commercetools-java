@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.commercetools.api.client.ProjectApiRoot;
 import com.commercetools.api.models.common.LocalizedString;
 import com.commercetools.api.models.common.LocalizedStringBuilder;
-import com.commercetools.api.models.custom_object.CustomObjectDraft;
-import com.commercetools.api.models.custom_object.CustomObjectDraftBuilder;
 import com.commercetools.api.models.custom_object.CustomObjectPagedQueryResponse;
 import com.commercetools.api.models.customer.Customer;
 import com.commercetools.api.models.customer.CustomerDraft;
@@ -43,6 +41,7 @@ import com.example.demo.config.ProjectApiConfig;
 import com.example.demo.model.CreateCustomType;
 import com.example.demo.model.CustomObject;
 import com.example.demo.model.CustomerCreation;
+import com.example.demo.model.Movie;
 import com.example.demo.model.ProductDesc;
 
 @RestController
@@ -137,7 +136,7 @@ public class ProjectController {
 	}
 	
 	@PostMapping("/createCustomer")
-	public ResponseEntity<?> createCustomer(@RequestBody CustomerCreation customerCreation)
+	public ResponseEntity<?> createCustomer(  @RequestBody CustomerCreation customerCreation)
 			//,@RequestParam("typeIdParam") String typeIdParam) 
 	{
 		try {
@@ -236,6 +235,21 @@ public class ProjectController {
 				.withContainerAndKey(container, key)
 				.get().executeBlocking().getBody();
 	}
+	
+	@GetMapping("/hello33/{id}")
+	public void hello(@PathVariable("id") int id ) {
+		System.out.println(id);
+	}
+	
+	@GetMapping("/helloParam")
+	public void helloParam(@RequestParam("name") String name) {
+		System.out.println(name);
+	}
+	
+	@GetMapping("/helloBody")
+	public void helloBody(@RequestBody Movie movie) {
+		System.out.println(movie.getName());
+		System.out.println(movie.getRating());
+	}
 }
-
 

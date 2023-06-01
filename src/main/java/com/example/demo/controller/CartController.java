@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.commercetools.api.models.cart.Cart;
 import com.commercetools.api.models.type.CustomFieldsDraft;
 import com.example.demo.DAO.CustomObjectDao;
-import com.example.demo.service.cartService;
+import com.example.demo.service.CartService;
 
 @RestController
 public class CartController {
 
 	@Autowired
-	private cartService service;
+	private CartService service;
 	
 	@Autowired
 	private CustomObjectDao customObjectDao;
