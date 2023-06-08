@@ -1,0 +1,49 @@
+type Query{
+	firstQuery : String
+	fullName(firstName : String, secondName : String) : String
+	getCustomerById(email : String) : Customer
+	getAllCustomers :	[Customer]
+}
+
+type Mutation{
+	updateFirstName(customerFirstName:String,customerEmail:String!)	:	Customer
+}
+
+
+type Customer{
+	id	:	String
+	key	:	String
+	email	:	String
+	firstName	:	String
+	lastName	:	String
+	password	:	String
+	addresses: [Address!]!
+}
+
+type Address{
+country: String!
+id: String
+streetName: String
+streetNumber: String
+additionalStreetInfo: String
+postalCode: String
+city: String
+region: String
+state: String
+company: String
+department: String
+building: String
+apartment: String
+pOBox: String
+additionalAddressInfo: String
+externalId: String
+key: String
+phone: String
+mobile: String
+email: String
+title: String
+salutation: String
+firstName: String
+lastName: String
+}
+

@@ -13,6 +13,10 @@ public class CustomerDao {
 	@Autowired
 	private ProjectApiConfig apiConfig;
 	
+	public CustomerPagedQueryResponse getAllCustomers(){
+		return apiConfig.createApiClient().customers().get().executeBlocking().getBody();
+	}
+	
 	public Customer getCustomerById(String customerId) {
 		return 
 				apiConfig.createApiClient().customers().withId(customerId)
