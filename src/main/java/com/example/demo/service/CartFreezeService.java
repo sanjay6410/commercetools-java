@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,10 @@ public class CartFreezeService {
 	@Autowired
 	private CartDao cartDao;
 	
-	public void updateCartStateToFrozen(String email) {
-	    Optional<Customer> cust=Optional.ofNullable(customerDao.getCustomerByEmail(email).getResults().get(0));
+	public void updateCartStateToFrozen(String email) throws InterruptedException, ExecutionException {
+	    Optional<Customer> cust=Optional.ofNullable(customerDao.getCustomerByEmail(email)
+	    		.get()
+	    		.getResults().get(0));
 		if(cust.isPresent()) {
 			Customer customer=cust.get();
 			String custId=customer.getId();

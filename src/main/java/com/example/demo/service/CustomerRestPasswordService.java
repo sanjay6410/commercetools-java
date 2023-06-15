@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.concurrent.ExecutionException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +23,10 @@ public class CustomerRestPasswordService {
 	@Autowired
 	private CustomerDao custDao;
 	
-	public void resetPassword(String email,String newPassword) {
-		Customer cust=custDao.getCustomerByEmail(email).getResults().get(0);
+	public void resetPassword(String email,String newPassword) throws InterruptedException, ExecutionException {
+		Customer cust=custDao.getCustomerByEmail(email)
+				.get()
+				.getResults().get(0);
 		CustomerCreatePasswordResetToken token=CustomerCreatePasswordResetTokenBuilder.of()
 				.email(email)
 				.build();

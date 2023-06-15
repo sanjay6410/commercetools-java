@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -34,22 +35,24 @@ public class GraphQlController {
 	}
 	
 	@QueryMapping
-	public Customer getCustomerById(@Argument String email) {
-		List<Customer> customers = custDao.getCustomerByEmail(email).getResults();
+	public Customer getCustomerByEmail(@Argument String email) throws InterruptedException, ExecutionException {
+		List<Customer> customers = custDao.getCustomerByEmail(email)
+				.get()
+				.getResults();
 	    Optional<Customer> customer = customers.isEmpty() ? Optional.empty() : Optional.ofNullable(customers.get(0));
 	    
 	    return customer.orElseThrow(() -> new IllegalArgumentException("Customer not found for email: " + email));
 	}
 	
 	@QueryMapping
-	public List<Customer> getAllCustomers(){
-		List<Customer> customers= custDao.getAllCustomers().getResults();
+	public List<Customer> getAllCustomers() throws InterruptedException, ExecutionException{
+		List<Customer> customers= custDao.getAllCustomers().get().getResults();
 		return customers;
 		
 	}
 	
 	@MutationMapping
-	public Customer updateFirstName(@Argument String customerEmail,@Argument String customerFirstName) {
+	public Customer updateFirstName(@Argument String customerEmail,@Argument String customerFirstName) throws InterruptedException, ExecutionException {
 		return customerService.updateFirstName(customerEmail, customerFirstName);
 	}
 	

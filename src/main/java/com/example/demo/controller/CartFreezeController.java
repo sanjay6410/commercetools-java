@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.concurrent.ExecutionException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +16,7 @@ public class CartFreezeController {
 	private CartFreezeService cartFreezeService;
 	
 	@PostMapping("/cartFreezeService")
-	public void cartFreezeService(@RequestParam("email") String email) {
+	public void cartFreezeService(@RequestParam("email") String email) throws InterruptedException, ExecutionException {
 		cartFreezeService.updateCartStateToFrozen(email);
 	}
 }

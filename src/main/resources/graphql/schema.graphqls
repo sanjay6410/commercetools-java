@@ -1,7 +1,8 @@
+
 type Query{
 	firstQuery : String
 	fullName(firstName : String, secondName : String) : String
-	getCustomerById(email : String) : Customer
+	getCustomerByEmail(email : String) : Customer
 	getAllCustomers :	[Customer]
 }
 

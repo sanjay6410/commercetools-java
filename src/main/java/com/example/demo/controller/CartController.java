@@ -5,14 +5,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.commercetools.api.models.cart.Cart;
-import com.commercetools.api.models.type.CustomFieldsDraft;
+import com.commercetools.api.models.graph_ql.GraphQLRequest;
+import com.commercetools.api.models.graph_ql.GraphQLRequestBuilder;
 import com.example.demo.DAO.CustomObjectDao;
 import com.example.demo.service.CartService;
+import com.fasterxml.jackson.databind.JsonNode;
+
+import io.vrap.rmf.base.client.ApiHttpResponse;
 
 @RestController
 public class CartController {
@@ -87,6 +90,12 @@ public class CartController {
 		}catch(Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Cart Not Created " +e.getMessage());
 		}
+	}
+	
+	public void check() {
+		GraphQLRequest request=GraphQLRequestBuilder.of()
+				
+				.build();
 	}
 	
 	

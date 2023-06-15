@@ -2,10 +2,13 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.commercetools.api.models.cart.Cart;
 import com.commercetools.api.models.common.Address;
 import com.commercetools.api.models.common.BaseAddress;
 import com.commercetools.api.models.common.BaseAddressBuilder;
@@ -24,8 +27,9 @@ public class CustomerService {
 	@Autowired
 	private CustomerDao customerDao;
 	
-	public String addAddressToTheExistingCustomer(String email, Address customerAddress) {
+	public String addAddressToTheExistingCustomer(String email, Address customerAddress) throws RuntimeException, InterruptedException, ExecutionException {
 	    Customer customer = customerDao.getCustomerByEmail(email)
+	    		.get()
 	            .getResults()
 	            .stream()
 	            .findFirst()
@@ -92,8 +96,8 @@ public class CustomerService {
 
 	
 	
-	public Customer updateFirstName(String email,String firstName) {
-		List<Customer> customers=customerDao.getCustomerByEmail(email).getResults();
+	public Customer updateFirstName(String email,String firstName) throws InterruptedException, ExecutionException  {
+		List<Customer> customers=customerDao.getCustomerByEmail(email).get().getResults();
 		Optional<Customer> customerOptional=customers.isEmpty() ? Optional.empty() : Optional.ofNullable(customers.get(0));
 		Customer customer=customerOptional.orElseThrow(() -> new RuntimeException("Customer Not Found With Email "+email));
 		
@@ -104,7 +108,11 @@ public class CustomerService {
 		return apiRoot.createApiClient().customers().withId(customer.getId()).post(customerUpdate).executeBlocking().getBody();
 	}
 	
+	public CompletableFuture<Cart> getCustomerCartsByEmail(String email)  {
+		return customerDao.getCustomerCartsByEmail(email);
+	}
 	
+	//throws InterruptedException, ExecutionException
 	
 	
 	

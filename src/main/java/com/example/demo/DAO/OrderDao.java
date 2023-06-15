@@ -14,6 +14,9 @@ public class OrderDao {
 	
 	public Order getOrderById(String orderId) {
 		return apiConfig.createApiClient().orders().withId(orderId).get().executeBlocking().getBody();
+//		return apiConfig.createApiClient().orders()
+				//.withId(orderId).get().execute().thenAccept(t -> t.getBody());
+				
 		
 	}
 	

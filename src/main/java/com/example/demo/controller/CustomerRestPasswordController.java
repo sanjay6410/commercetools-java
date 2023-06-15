@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.concurrent.ExecutionException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +16,7 @@ public class CustomerRestPasswordController {
 	private CustomerRestPasswordService resetPasswordService;
 	
 	@PostMapping("/resetPassword")
-	public String resetPassword(@RequestParam("email") String email,@RequestParam("newPassword") String newPassword) {
+	public String resetPassword(@RequestParam("email") String email,@RequestParam("newPassword") String newPassword) throws InterruptedException, ExecutionException {
 		resetPasswordService.resetPassword(email,newPassword);
 		return "Reset Password Successfully";
 	}
